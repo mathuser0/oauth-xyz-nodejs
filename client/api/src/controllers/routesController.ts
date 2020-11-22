@@ -13,7 +13,7 @@ import {
 } from '../models/pendingTransaction';
 import * as jose from 'node-jose';
 
-const asTransactionURL = 'http://localhost:3000/transaction';
+const asTransactionURL = 'http://as:3000/transaction';
 // const asTransactionURL = 'http://host.docker.internal:9834/api/as/transaction';
 
 const sha3_512_encode = function(toHash: string) {
@@ -178,7 +178,7 @@ class RoutesController {
         let lastResponse = lastEntry.response;
         let txRequest = {
           handle: lastResponse.handle.value,
-          interact_handle: sha3_512_encode(req.query.interact)
+          interact_handle: sha3_512_encode(req.query.interact.toString())
         };
         let bodyTx = JSON.stringify(txRequest);
         let headers = { 'Content-Type': 'application/json' };
