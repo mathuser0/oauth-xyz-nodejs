@@ -3,8 +3,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
-version: '3'
+version: '3.5'
+networks:
+  trustee:
+    driver: bridge
 services:
   as:
     build: ./as
@@ -15,8 +17,8 @@ services:
       - MONGO_USERNAME=docker
       - MONGO_PASSWORD=docker
       - DEBUG
-    links:
-      - mongo-as
+    networks:
+      - trustee
     depends_on:
       - mongo-as
   client-api:
@@ -28,8 +30,8 @@ services:
       - MONGO_USERNAME=docker
       - MONGO_PASSWORD=docker
       - DEBUG
-    links:
-      - mongo-client
+    networks:
+      - trustee
     depends_on:
       - mongo-client
   mongo-as:
@@ -39,6 +41,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=docker
       - MONGO_INITDB_ROOT_PASSWORD=docker
+    networks:
+      - trustee
   mongo-client:
     image: mongo:latest
     volumes:
@@ -46,12 +50,14 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=docker
       - MONGO_INITDB_ROOT_PASSWORD=docker
+    networks:
+      - trustee
   web:
     build: ./client/web
     ports:
       - '5000:5000'
-    links:
-      - client-api
+    networks:
+      - trustee
     depends_on:
       - client-api
     environment:
