@@ -32,6 +32,13 @@ class DataController {
     });
   }
 
+  public getTransactionByAccessToken(token: string) {
+    return TransactionModel.findOne({
+      'status': "issued",
+      'access_token.value': token
+    });
+  }
+
   // Display
   public getDisplayByHandle(handle: string) {
     return DisplayModel.findOne({
