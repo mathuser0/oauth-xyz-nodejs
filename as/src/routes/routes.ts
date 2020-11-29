@@ -5,6 +5,8 @@ SPDX-License-Identifier: Apache-2.0
 import { Request, Response } from 'express';
 import transactionController from '../controllers/transactionController';
 import interactionController from '../controllers/interactionController';
+import introspectController from '../controllers/introspectController';
+
 export class Routes {
   public routes(app): void {
     app.route('/').get((req: Request, res: Response) => {
@@ -30,5 +32,7 @@ export class Routes {
     app.route('/testing').get(interactionController.getTesting);
 
     app.route('/testing/clear').get(interactionController.getTestingClear);
+
+    app.route('/introspect').post(introspectController.postIntrospect);
   }
 }
