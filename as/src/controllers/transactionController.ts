@@ -276,9 +276,8 @@ class TransactionController {
           if (tx.interact) {
             if (tx.interact.can_redirect) {
               let interact_id = utils.generateRandomString(10);
-              let ip_address = utils.getIP();
               let interaction_url =
-                'http://'+ip_address+':3000/interact/' + interact_id;
+                'http://localhost:3000/interact/' + interact_id;
 
               tx.interact.url = interaction_url;
               tx.interact.interact_id = interact_id;
@@ -292,8 +291,7 @@ class TransactionController {
             
             if (tx.interact.can_user_code) {
               let user_code = utils.generateUserCode(8);
-              let ip_address = utils.getIP();
-              let user_code_url = 'http://'+ip_address+':3000/interact/device';
+              let user_code_url = 'http://localhost:3000/interact/device';
 
               tx.interact.user_code = user_code;
               tx.interact.user_code_url = user_code_url;
