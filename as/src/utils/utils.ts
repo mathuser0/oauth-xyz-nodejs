@@ -3,6 +3,8 @@ Copyright SecureKey Technologies Inc. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 class Utils {
+  ipAddress: string
+  
   public generateRandomString(length: Number): String {
     var result = '';
     var characters =
@@ -24,8 +26,8 @@ class Utils {
     return result;
   }
   
-  public getIPaddress(): String {
-    return 'localhost';
+  constructor() {
+    this.ipAddress = 'localhost';
 }
 
 export default new Utils();
