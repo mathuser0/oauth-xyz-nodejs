@@ -28,6 +28,7 @@ class Utils {
   
   constructor() {
     this.ipAddress = 'localhost';
+  }
 }
 
 export default new Utils();
