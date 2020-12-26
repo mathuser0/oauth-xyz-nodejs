@@ -23,6 +23,9 @@ class Utils {
     }
     return result;
   }
+  
+  public getIPaddress(): String {
+    return 'localhost';
 }
 
 export default new Utils();
